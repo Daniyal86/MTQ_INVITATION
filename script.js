@@ -2,12 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const landingLayer = document.getElementById('landing-layer');
     const viewBtn = document.getElementById('view-invitation');
     const invitationContent = document.getElementById('invitation-content');
-    const bgMusic = document.getElementById('bg-music');
-    const musicToggle = document.getElementById('music-toggle');
     const progressBar = document.getElementById('progress-bar');
 
-    // 1. Sliding Door Transition
-    if (bgMusic) bgMusic.volume = 0.3; // Set to a soft background level
     if (viewBtn) {
         viewBtn.addEventListener('click', () => {
             if (landingLayer) landingLayer.classList.add('open');
@@ -19,9 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Allow scrolling immediately
             document.body.style.overflow = 'auto';
             document.documentElement.style.overflow = 'auto';
-
-            // Start Music if exists
-            if (bgMusic) playMusic();
 
             // Remove landing layer from DOM after animation finishes
             setTimeout(() => {
@@ -61,37 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. Music Logic & Toggle
-    function updateMusicIcon() {
-        if (!musicToggle) return;
-        // Use standard symbols: ⏸ for pause, ▶ for play
-        musicToggle.innerHTML = bgMusic.paused ? '<span>▶</span>' : '<span>⏸</span>';
-    }
-
-    function playMusic() {
-        if (!bgMusic) return;
-        bgMusic.play().then(() => {
-            updateMusicIcon();
-        }).catch(err => {
-            console.warn("Audio play blocked or error:", err);
-        });
-    }
-
-    function pauseMusic() {
-        if (!bgMusic) return;
-        bgMusic.pause();
-        updateMusicIcon();
-    }
-
-    if (musicToggle && bgMusic) {
-        musicToggle.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                playMusic();
-            } else {
-                pauseMusic();
-            }
-        });
-    }
 
     // Initial state: prevent scroll until opened
     document.body.style.overflow = 'hidden';
