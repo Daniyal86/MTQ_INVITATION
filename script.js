@@ -105,4 +105,20 @@ document.addEventListener('DOMContentLoaded', () => {
     window.setBackgroundSpeed = function (seconds) {
         document.body.style.animationDuration = `${seconds}s`;
     };
+
+    // 7. Source Protection Deterrents (Discourage Inspection)
+    // Note: This is a deterrent and can be bypassed by advanced users
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    document.addEventListener('keydown', (e) => {
+        // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+        if (
+            e.keyCode === 123 ||
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
+            (e.ctrlKey && e.keyCode === 85)
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
 });
