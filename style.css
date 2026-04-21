@@ -438,8 +438,10 @@ h2 {
 /* Speakers */
 .speakers-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .speaker-card {
@@ -447,13 +449,18 @@ h2 {
 }
 
 .speaker-img-wrapper {
-    width: 140px;
-    height: 140px;
+    width: 154px;
+    height: 154px;
     margin: 0 auto 1.5rem;
     border-radius: 50%;
     background: var(--grad-gold);
-    padding: 3px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    padding: 4px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 
 .speaker-img {
@@ -461,7 +468,16 @@ h2 {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--navy-dark);
+    border: 4px solid var(--navy-dark);
+    display: block;
+}
+
+#speaker-altamash {
+    object-position: center 2%; /* Adjusted to show Altamash Sir's head properly */
+}
+
+#speaker-mtq {
+    object-position: center 10%; /* User confirmed this works well for MTQ Sir */
 }
 
 /* Venue */
@@ -667,6 +683,11 @@ h2 {
 @media (min-width: 768px) {
     .details-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .speakers-grid {
+        grid-template-columns: 1fr 1fr;
+        max-width: none;
     }
 
     .logo-container h1 {
